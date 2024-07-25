@@ -477,6 +477,10 @@ function setNativeCurrentTime(details, time) {
   const delta =
       atScrollTimelineBoundary ? (playbackRate < 0 ? 0.001 : -0.001) : 0;
 
+  // Fix from https://github.com/MurhafSousli/ngx-scrollbar/issues/624#issuecomment-2248195366
+  if(isNaN(time)) {
+    time = 0;
+  }
   details.animation.currentTime = time + delta;
 }
 
